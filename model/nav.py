@@ -13,7 +13,7 @@ from sklearn.ensemble import RandomForestClassifier
 #############################################
 # GLOBAL VARIABLES
 #############################################
-GRID_SIZE = 15
+GRID_SIZE = 10
 WEATHER_API_KEY = "b865f8ab64997428792213c1280ae895" 
 WIND_THRESHOLD = 6
 RAIN_THRESHOLD = 1.5
@@ -414,7 +414,10 @@ if __name__ == "__main__":
 
     DEBUG = input("Enable debug visualization? (y/n, default n): ").strip().lower() == "y"
 
-    route = nav_call(start_lat, start_lon, goal_lat, goal_lon)
+    latlon_route = nav_call(start_lat, start_lon, goal_lat, goal_lon)
     print("Returned route (lat/lon):")
-    for point in route:
+    for point in latlon_route:
         print(point)
+        
+    if DEBUG:
+        visualize_latlon_route_on_map(latlon_route, title="Final Route on Map")
