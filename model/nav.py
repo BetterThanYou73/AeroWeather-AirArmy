@@ -21,7 +21,7 @@ RAIN_THRESHOLD = 1.5
 # Use maximum workers available (for I/O-bound tasks)
 MAX_WORKERS = (os.cpu_count() or 4) * 2
 
-DEBUG = True  # Set to True to show debug maps
+DEBUG = False  # Set to True to show debug maps
 
 #############################################
 # HELPER FUNCTIONS: Bounding Box & Grid Conversion
@@ -58,6 +58,16 @@ def grid_to_latlon(gy, gx, min_lat, max_lat, min_lon, max_lon, grid_size):
 #############################################
 # HELPER FUNCTIONS: Weather API Calls (Parallel)
 #############################################
+
+def generate_random_scenario():
+    # For example, generate lat in [40,50] and lon in [-80,-70]
+    lat_start = random.uniform(-80,80)
+    lon_start = random.uniform(-170,170)
+    lat_goal = lat_start+random.uniform(0,1)*random.uniform(-2,2)
+    lon_goal = lon_start+random.uniform(0,1)*random.uniform(-2,2)
+    return (lat_start, lon_start, lat_goal, lon_goal)
+
+
 def fetch_cell_data(args):
     (y, x, min_lat, max_lat, min_lon, max_lon,
      grid_size, wind_thresh, rain_thresh, api_key) = args
@@ -337,7 +347,16 @@ def print_route_as_json(latlon_route):
 # nav_call FUNCTION: Main Entry Point
 #############################################
 def nav_call(start_lat, start_lon, goal_lat, goal_lon):
-    # 1) Build environment around start/goal
+    # 1) Load the pre-trained model (if available)
+    try:
+        with open("route_model_multi.pkl", "rb") as f:
+            model = pickle.load(f)
+        print("Loaded model from route_model_multi.pkl")
+    except FileNotFoundError:
+        print("Model file not found. Please train a model first.")
+        return []
+
+    # 2) Build environment for the bounding box around start/goal
     (min_lat, max_lat, min_lon, max_lon) = define_bounding_box(start_lat, start_lon, goal_lat, goal_lon, extra_margin=0.3)
     env, wind_field = generate_environment_multi_owm_concurrent(
         min_lat, max_lat, min_lon, max_lon,
@@ -348,76 +367,111 @@ def nav_call(start_lat, start_lon, goal_lat, goal_lon):
         max_workers=MAX_WORKERS
     )
 
-    # 2) Convert user lat/lon to grid coordinates
+    # 3) Convert user lat/lon to grid coordinates
     start_grid = latlon_to_grid(start_lat, start_lon, min_lat, max_lat, min_lon, max_lon, GRID_SIZE)
     goal_grid  = latlon_to_grid(goal_lat, goal_lon, min_lat, max_lat, min_lon, max_lon, GRID_SIZE)
     print("nav_call: Start grid:", start_grid, "Goal grid:", goal_grid)
 
-    # 3) Run A* to get the expert route
+    # 4) Run A* to get the expert route (for debugging/training)
     astar_path = a_star(env, wind_field, start_grid, goal_grid)
     print("A* path (grid coords):", astar_path)
     if not astar_path or len(astar_path) < 2:
         print("No valid A* route found. Exiting.")
         return []
 
-    # 4) Build training data from the A* route and train the model
+    # 5) Build training data from the A* route
     pairs = path_to_state_action_pairs(astar_path, wind_field, goal_grid)
-    X_data, y_data = [], []
+    X_data_new, y_data_new = [], []
     for (st, ac) in pairs:
-        X_data.append(st)
-        y_data.append(ac)
-    X_np = np.array(X_data, dtype=float)
-    y_np = np.array(y_data, dtype=int)
+        X_data_new.append(st)
+        y_data_new.append(ac)
+    X_new = np.array(X_data_new, dtype=float)
+    y_new = np.array(y_data_new, dtype=int)
+    print("New training samples collected:", len(X_new))
+
+    # 6) Load previous training data if available and combine
+    try:
+        with open("training_data.pkl", "rb") as f:
+            X_old, y_old = pickle.load(f)
+        print("Loaded previous training data. Samples:", len(X_old))
+        X_combined = np.concatenate([X_old, X_new], axis=0)
+        y_combined = np.concatenate([y_old, y_new], axis=0)
+    except FileNotFoundError:
+        print("No previous training data found. Using new samples only.")
+        X_combined, y_combined = X_new, y_new
+
+    # 7) Train the model on combined data
     model = RandomForestClassifier(n_estimators=10, random_state=42)
-    model.fit(X_np, y_np)
-    print("Trained model on route of length:", len(astar_path))
-    
-    # Save training data and model for later updates
+    model.fit(X_combined, y_combined)
+    print("Trained model on", len(X_combined), "samples.")
+
+    # Save combined training data and updated model
     with open("training_data.pkl", "wb") as f:
-        pickle.dump((X_np, y_np), f)
+        pickle.dump((X_combined, y_combined), f)
     with open("route_model_multi.pkl", "wb") as f:
         pickle.dump(model, f)
-    print("Saved model and training data.")
+    print("Saved updated model and training data.")
 
-    # 5) Use the model to get a fallback route
-    fallback_route = model_based_route_with_fallback(model, env, wind_field, start_grid, goal_grid, max_steps=200)
-    print("Model fallback route (grid coords):", fallback_route)
+    # 8) Try to get a model-based fallback route, with one retry if needed
+    fallback_route = None
+    max_retries = 2
+    for attempt in range(max_retries):
+        fallback_route = model_based_route_with_fallback(model, env, wind_field, start_grid, goal_grid, max_steps=200)
+        if fallback_route is not None:
+            print(f"Model fallback route found on attempt {attempt+1}.")
+            break
+        print(f"Attempt {attempt+1} failed. Retrying...")
     if fallback_route is None:
-        print("No route found by the model. Possibly blocked environment.")
+        print("No route found by the model after retries. Possibly a blocked environment.")
         return []
 
-    # 6) Convert fallback route to lat/lon
+    print("Model fallback route (grid coords):", fallback_route)
+
+    # 9) Convert fallback route from grid to lat/lon
     latlon_route = [grid_to_latlon(gy, gx, min_lat, max_lat, min_lon, max_lon, GRID_SIZE) for (gy, gx) in fallback_route]
-    # Instead of forcibly snapping, link to the closest route points
+    # Link to the closest route points (instead of forcibly snapping)
     latlon_route = link_start_goal_to_closest(latlon_route, start_lat, start_lon, goal_lat, goal_lon)
 
-    # 7) Print final route in JSON-like structure
+    # 10) Print final route in JSON-like structure
     print("Final route in lat/lon:")
-    print_route_as_json(latlon_route)
-
-    return latlon_route
-
+    result_list = []
+    for idx, (lat_c, lon_c) in enumerate(latlon_route, 1):
+        point = {"name": f"Point {idx}", "coords": [lat_c, lon_c]}
+        result_list.append(point)
+        print(point)
+    print(result_list)
+    
+    return result_list
 
 #############################################
 # MAIN: For direct running
 #############################################
 if __name__ == "__main__":
-    try:
-        start_lat = float(input("Enter start latitude (default 53.521568): ") or "53.521568")
-        start_lon = float(input("Enter start longitude (default -113.509583): ") or "-113.509583")
-        goal_lat = float(input("Enter goal latitude (default 51.043966): ") or "51.043966")
-        goal_lon = float(input("Enter goal longitude (default -114.060203): ") or "-114.060203")
-    except Exception as e:
-        print("Invalid input. Using default coordinates.")
-        start_lat, start_lon = 53.521568, -113.509583
-        goal_lat, goal_lon = 51.043966, -114.060203
-
-    DEBUG = input("Enable debug visualization? (y/n, default n): ").strip().lower() == "y"
-
-    latlon_route = nav_call(start_lat, start_lon, goal_lat, goal_lon)
-    print("Returned route (lat/lon):")
-    for point in latlon_route:
-        print(point)
-        
-    if DEBUG:
-        visualize_latlon_route_on_map(latlon_route, title="Final Route on Map")
+    mode = input("Enter mode: 'train' or 'test' (default 'train'): ").strip().lower() or "train"
+    
+    if mode == "train":
+        num_scenarios = int(input("Enter number of random training scenarios (default 100): ") or "100")
+        print("Starting training on random scenarios...")
+        for i in range(num_scenarios):
+            scenario = generate_random_scenario()
+            print(f"\nScenario {i+1}: Start: {scenario[:2]}, Goal: {scenario[2:]}")
+            # Call nav_call with train=True to update the model on this scenario.
+            nav_call(scenario[0], scenario[1], scenario[2], scenario[3], train=True)
+        print("Training complete.")
+    elif mode == "test":
+        try:
+            start_lat = float(input("Enter start latitude (default 53.521568): ") or "53.521568")
+            start_lon = float(input("Enter start longitude (default -113.509583): ") or "-113.509583")
+            goal_lat = float(input("Enter goal latitude (default 51.043966): ") or "51.043966")
+            goal_lon = float(input("Enter goal longitude (default -114.060203): ") or "-114.060203")
+        except Exception as e:
+            print("Invalid input. Using default coordinates.")
+            start_lat, start_lon = 53.521568, -113.509583
+            goal_lat, goal_lon = 51.043966, -114.060203
+        final_route = nav_call(start_lat, start_lon, goal_lat, goal_lon)
+        print("Returned route (lat/lon):")
+        print_route_as_json(final_route)
+        if DEBUG:
+            visualize_latlon_route_on_map(final_route, title="Final Route on Map")
+    else:
+        print("Invalid mode. Exiting.")
