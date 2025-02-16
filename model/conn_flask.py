@@ -1,11 +1,12 @@
 from flask import Flask, request, jsonify
+import numpy as np
 from nav import nav_call
 app = Flask(__name__)
 
 @app.route('/predict', methods=['POST'])
 def predict():
-    data = request.json
-    input_data = data.get('input', [])  # Example: Input array from frontend
+    data = request.json["coordinates"] 
+    input_data = np.array(data).reshape(1, -1) # Example: Input array from frontend
     if len(input_data) != 4:
         return jsonify({"error": "Invalid input format."}), 400
     latA=input_data[0]
