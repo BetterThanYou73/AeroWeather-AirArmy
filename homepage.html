@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" /> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Air Army</title>
+    <meta name="title" content="Sky - Nav" />
+    <meta
+      name="description"
+      content="."
+    />
+
+    <!--establish early connectection with goog -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <!-- use cross origin coz google fonts be like that sometimes-->
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <!--load bebas neue-->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap"
+      rel="stylesheet"
+    />
+
+    <!--
+        preload to prevent load delays, use fonts from assests, woff2 is extension for web font format supporter 
+        by chrome, cross origin because we may need to load fonts form different domains
+        nonsense name to prevent caching
+    -->
+    <link
+      rel="preload"
+      href="/assets/opensauce-medium-DHCY1jhb.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+
+    <!--load animations and my css file-->
+    <script type="module" crossorigin src="/assets/mainjs.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/maincss.css">
+  </head>
+
+  <body>
+    <main class="home" data-scroll-container>
+      <!--
+      <nav class="home__nav">
+        <div class="home__nav__left">
+          <div class="nav__name" nav-anim>
+            <span>
+              Air Army
+            </span
+            >
+          </div>
+        </div>
+      </nav>
+      -->
+
+      <br><br><br><br><br><br>
+      <!-- MAIN HEADING SECTION -->
+      <section class="home__hero">
+        <div class="hero__title">
+          <h1 class="mobile">
+            SKY <br />
+            —— NAV
+          </h1>
+          <h1 class="hero__title__top overflow desktop">
+            <div class="hero__title__top" title-overflow>
+              <span
+                class="hero__title__left"
+                data-scroll=""
+                data-scroll-direction="horizontal"
+                data-scroll-position="top"
+                data-scroll-speed="7"
+              >
+                <span class="hero__hover">S</span>
+                <span class="hero__hover">K</span>
+                <span class="hero__hover">Y</span>
+              </span>
+              <span class="hero__title__dash desktop">——</span>
+              <span class="hero__title__dash tablet">——</span>
+
+              <span
+                class="hero__title__right"
+                data-scroll=""
+                data-scroll-direction="horizontal"
+                data-scroll-position="top"
+                data-scroll-speed="-7"
+              >
+                <span class="hero__hover">N</span>
+                <span class="hero__hover">A</span>
+                <span class="hero__hover">V</span>
+              </span>
+            </div>
+          </h1>
+          <!-- <br><br><br><br><br><br><br><br><br><br><br><br> -->
+          <!-- front title -->
+          <span class="hero__title__bottom overflow">
+            <div class="hero__title__bottom">
+              <!-- bottom word -->
+              <!--
+              <h1 class="bottom__left desktop" title-overflow>
+                <span class="hero__hover">N</span>
+                <span class="hero__hover">A</span>
+                <span class="hero__hover">V</span>
+                <span class="hero__hover">I</span>
+                <span class="hero__hover">G</span>
+                <span class="hero__hover">A</span>
+                <span class="hero__hover">T</span>
+                <span class="hero__hover">O</span>
+                <span class="hero__hover">R</span>
+              </h1>
+              -->
+              <!-- bottom description -->
+              <div class="bottom__right">
+                <p class="hero__paragraph">
+                  <span class="first-word">About</span> &nbsp; Something about the team or maybe something about 
+                  what the project is or blah blah yap bruh
+                </p>
+              </div>
+            </div>
+          </span>
+
+        </div>
+      </section>
+
+      <!-- line  -->
+      <section class = "home__projects">
+        <span class="home__projects__line right">
+          <span></span>
+        </span>
+      </section>
+
+      <!-- Details, Future -->
+      <section class="home__content">
+        <h2 class="home__content__title">Some details about what the tool is</h2>
+        <p class="home__content__desc">
+          Tropical Storm Gabrielle was a short-lived tropical cyclone that passed over North Carolina before tracking out to sea. 
+          The seventh named storm of the 2007 Atlantic hurricane season, Gabrielle developed as a subtropical cyclone on September 8 
+          about 385 miles (620 km) southeast of Cape Lookout, North Carolina. Unfavorable wind shear impacted the storm for much of 
+          its duration, although a temporary decrease in the shear allowed the cyclone to become a tropical storm. On September 9, 
+          it made landfall at Cape Lookout National Seashore in North Carolina with winds of 60 mph (97 km/h). Turning to the northeast
+          , the storm quickly weakened and dissipated on September 11. The storm dropped heavy rainfall near its immediate landfall 
+          location but little precipitation elsewhere. Along the coast of North Carolina, slight localized flooding was reported. 
+          Along the coast of Florida, rough surf drowned one person. Overall damage was minor.
+          <!-- just in case we want to add something with a link to it -->
+          <a
+            href=""
+            target="_blank"
+            rel="noopener noreferrer"
+            >possible link</a
+          >
+        </p>
+
+        <br><br><br><br>
+        
+        <h2 class="home__content__title">FUTURE ENDEAVOURS</h2>
+        <p class="home__content__desc">
+          Tropical Storm Gabrielle was a short-lived tropical cyclone that passed over North Carolina before tracking out to sea. 
+          The seventh named storm of the 2007 Atlantic hurricane season, Gabrielle developed as a subtropical cyclone on September 8 
+          about 385 miles (620 km) southeast of Cape Lookout, North Carolina. Unfavorable wind shear impacted the storm for much of 
+          its duration, although a temporary decrease in the shear allowed the cyclone to become a tropical storm. On September 9, 
+          it made landfall at Cape Lookout National Seashore in North Carolina with winds of 60 mph (97 km/h). Turning to the northeast
+          , the storm quickly weakened and dissipated on September 11. The storm dropped heavy rainfall near its immediate landfall 
+          location but little precipitation elsewhere. Along the coast of North Carolina, slight localized flooding was reported. 
+          Along the coast of Florida, rough surf drowned one person. Overall damage was minor.
+          <!-- just in case we want to add something with a link to it -->
+          <a
+            href=""
+            target="_blank"
+            rel="noopener noreferrer"
+            >possible link</a
+          >
+        </p>
+
+      </section>
+
+      <!-- Try our stuff out section -->
+      <section class="home__projects">
+        <!-- line 1 -->
+        <span class="home__projects__line left">
+          <span></span>
+        </span>
+
+        <!-- Try our tool out-->
+        <div class="home__projects__project">
+          <!--
+          put the link for new website here in href bro  
+          -->
+          <a
+            href="./Location_page.html"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="home__projects__project__link"
+          >
+            <h1
+              class="home__projects__project__title"
+              data-scroll=""
+              data-scroll-direction="horizontal"
+              data-scroll-speed="8"
+            >
+              <span class="inline-ovh">
+                <div class="title__main right">
+                  <span
+                    class="slide-up"
+                    data-content="TRY OUR TRAVEL COMPANION OUT!"
+                    aria-hidden="true"
+                  ></span>
+                  TRY OUR TRAVEL COMPANION OUT!
+                </div>
+              </span>
+            </h1>
+          </a>
+
+          <!-- mobile version -->
+          <div class="project__link">
+            <a
+              href="./Location_page.html"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="c-button"
+            >
+              <span class="c-link">
+                <span class="c-link__inner">
+                  <span>
+                    Visit Site
+                    <span class="share-icon"
+                      ><svg
+                        width="20"
+                        height="20"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M13.337 7.845l-7.173 7.173-1.178-1.179 7.172-7.172H5.837V5h9.166v9.167h-1.666V7.845z"
+                          fill="#777"
+                        /></svg
+                    ></span>
+                  </span>
+                </span>
+              </span>
+            </a>
+          </div>
+        </div>
+        
+        <!-- line 2 -->
+        <!-- 
+        <span class="home__projects__line right">
+          <span></span>
+        </span>
+        -->
+
+        <!-- check our git repository out -->
+        <div class="home__projects__project">
+        <!-- put link for your next webpage over here -->
+          <a
+            href="https://github.com/BetterThanYou73/AeroWeather-AirArmy.git"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="home__projects__project__link"
+          >
+            <h1
+              class="home__projects__project__title"
+              data-scroll=""
+              data-scroll-direction="horizontal"
+              data-scroll-speed="-8"
+            >
+              <span class="inline-ovh">
+                <div class="title__main left">
+                  <span
+                    class="slide-up"
+                    data-content="CHECK OUR REPOSITORY OUT!"
+                    aria-hidden="true"
+                  ></span>
+                  CHECK OUR REPOSITORY OUT!
+                </div>
+              </span>
+            </h1>
+          </a>
+
+          <div class="project__link">
+            <a
+              href="https://github.com/BetterThanYou73/AeroWeather-AirArmy.git"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="c-button"
+            >
+              <span class="c-link">
+                <span class="c-link__inner">
+                  <span>
+                    Visit Site
+                    <span class="share-icon"
+                      ><svg
+                        width="20"
+                        height="20"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M13.337 7.845l-7.173 7.173-1.178-1.179 7.172-7.172H5.837V5h9.166v9.167h-1.666V7.845z"
+                          fill="#777"
+                        /></svg
+                    ></span>
+                  </span>
+                </span>
+              </span>
+            </a>
+          </div>
+        </div>
+
+        <!-- line 3 -->
+        <span class="home__projects__line left">
+          <span></span>
+        </span>
+
+      </section>
+
+      <!-- email -->
+      <section class="home__content">
+        <div class="home__contact__email">
+          <button class="email">something@gmail.com</button>
+          <div class="to-copy">
+            <span>Click to Copy email because we're so awesome and you want to contact us</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- line  -->
+      <section class = "home__projects">
+        <span class="home__projects__line right">
+          <span></span>
+        </span>
+      </section>
+
+      <!-- time thing -->
+      <!--  
+      <footer class="home__footer" id="js-footer">
+        <div class="home__footer__center">
+            <div class="time">
+                <span data-hour></span>
+                <span class="flash">:</span>
+                <span data-minute></span>
+            </div>
+        </div>
+      </footer>
+      -->
+
+    </main>
+
+  </body>
+</html>

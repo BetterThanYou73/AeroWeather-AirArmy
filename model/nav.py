@@ -14,7 +14,7 @@ from sklearn.ensemble import RandomForestClassifier
 # GLOBAL VARIABLES
 #############################################
 GRID_SIZE = 10
-WEATHER_API_KEY = "b865f8ab64997428792213c1280ae895" 
+WEATHER_API_KEY = "remove_key" 
 WIND_THRESHOLD = 6
 RAIN_THRESHOLD = 1.5
 
