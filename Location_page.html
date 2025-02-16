@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" /> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Air Army</title>
+    <meta name="title" content="Sky - Nav" />
+    <meta
+      name="description"
+      content="."
+    />
+
+    <!-- Clock feature -->
+    <script
+      type="text/javascript"
+      src="//w.24timezones.com/l.js"
+      async
+    ></script>
+
+    <!--establish early connectection with goog -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <!-- use cross origin coz google fonts be like that sometimes-->
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <!--load bebas neue-->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap"
+      rel="stylesheet"
+    />
+
+    <!--
+        preload to prevent load delays, use fonts from assests, woff2 is extension for web font format supporter 
+        by chrome, cross origin because we may need to load fonts form different domains
+        nonsense name to prevent caching
+    -->
+    <link
+      rel="preload"
+      href="/assets/opensauce-medium-DHCY1jhb.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+
+    <!--load animations and my css file-->
+    <script type="module" crossorigin src="/assets/mainjs.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/maincss.css">
+  </head>
+
+  <body>
+    <!--
+    <div class="home__higher__center">
+        <div class = "no-wrap">
+            <p class = "place">
+                EDMONTON, AB
+            </p>
+            <div class="time">
+                <span data-hour></span>
+                <span class="flash">:</span>
+                <span data-minute></span>
+            </div>
+        </div>
+    </div>
+    -->
+    <div class="image-container">
+      <img src = "./assets/logo.png" alt = "centered-image" width = "200" height = "200">
+    </div>
+
+    <form onsubmit="return true;">
+      <div class="form-container">
+          <div class="from-section">
+              <p class="location__header">FROM</p>
+              <label for="location_longitude"> LONGITUDE </label>
+              <input type="number" id="inputA" class="input-box" step = "any">
+              <label for="location_latitude"> LATITUDE </label>
+              <input type="number" id="inputB" class="input-box" step = "any">
+          </div>
+          <span class="arrow">➤</span>
+          <div class="to-section">
+              <p class="location__header">TO</p>
+              <label for="destination_longitude"> LONGITUDE </label>
+              <input type="number" id="inputC" class="input-box" step = "any">
+              <label for="destination_latitude"> LATITUDE </label>
+              <input type="number" id="inputD" class="input-box" step = "any">
+          </div>
+      </div>
+      <div class="button-container">
+        <button class="nav__button c-button" nav-anim id="submitButton">
+            <span> SUBMIT </span>
+        </button>
+      </div>
+    </form>
+  
+
+  </body>
+
+  </html>
