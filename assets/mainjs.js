@@ -5573,7 +5573,7 @@ document.addEventListener("DOMContentLoaded", function () {
         let inputC = parseFloat(document.getElementById("inputC").value);
         let inputD = parseFloat(document.getElementById("inputD").value);
 
-        let data = [inputA, inputB, inputC, inputD];
+        let data = [inputB, inputA, inputD, inputC];
 
         fetch("http://127.0.0.1:5000/predict", {
             method: "POST",
