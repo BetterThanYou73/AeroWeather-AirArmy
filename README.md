@@ -1,9 +1,8 @@
 # ✈️ [SKY - NAV](https://skynav.pythonanywhere.com/)
 
-## 🌍 Navigation System for Small Aircrafts, Helicopters, and Drones
+## 🌍 SkyNav: Smart Navigation for Small Aircraft, Helicopters, and Drones
 
-SkyNav-AirArmy is a **real-time navigation system** designed to guide **small aircrafts, helicopters, and drones** from **Point A to Point B** while avoiding **hazardous weather conditions** such as snow, hail, and storms. It utilizes the **A* (A-star) pathfinding algorithm** to determine the **shortest and safest route** for flying.
-
+SkyNav is a real-time navigation system designed to assist small aircraft, helicopters, and drones in reaching their destination safely and efficiently. Using the A (A-star) pathfinding algorithm, it calculates the shortest and safest route while dynamically avoiding hazardous weather conditions such as snow, hail, and storms. By integrating weather awareness into route planning, SkyNav enhances flight safety and ensures smooth navigation from Point A to Point B.
 ---
 
 ## 🚀 Features
