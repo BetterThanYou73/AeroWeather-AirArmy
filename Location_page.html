@@ -37,30 +37,28 @@
       <img src = "./assets/logo.png" alt = "centered-image" width = "200" height = "200">
     </div>
 
-    <form onsubmit="return true;">
-      <div class="form-container">
-          <div class="from-section">
-              <p class="location__header">FROM</p>
-              <label for="location_longitude"> LONGITUDE </label>
-              <input type="number" id="inputA" class="input-box" step = "any">
-              <label for="location_latitude"> LATITUDE </label>
-              <input type="number" id="inputB" class="input-box" step = "any">
-          </div>
-          <span class="arrow">➤</span>
-          <div class="to-section">
-              <p class="location__header">TO</p>
-              <label for="destination_longitude"> LONGITUDE </label>
-              <input type="number" id="inputC" class="input-box" step = "any">
-              <label for="destination_latitude"> LATITUDE </label>
-              <input type="number" id="inputD" class="input-box" step = "any">
-          </div>
-      </div>
-      <div class="button-container">
-        <button class="nav__button c-button button-font" nav-anim id="submitButton">
-            <span> SUBMIT </span>
-        </button>
-      </div>
-    </form>
+    <div class="form-container">
+        <div class="from-section">
+            <p class="location__header">FROM</p>
+            <label for="location_longitude"> LONGITUDE </label>
+            <input type="number" id="inputA" class="input-box" step = "any">
+            <label for="location_latitude"> LATITUDE </label>
+            <input type="number" id="inputB" class="input-box" step = "any">
+        </div>
+        <span class="arrow">➤</span>
+        <div class="to-section">
+            <p class="location__header">TO</p>
+            <label for="destination_longitude"> LONGITUDE </label>
+            <input type="number" id="inputC" class="input-box" step = "any">
+            <label for="destination_latitude"> LATITUDE </label>
+            <input type="number" id="inputD" class="input-box" step = "any">
+        </div>
+    </div>
+    <div class="button-container">
+      <button class="nav__button c-button button-font" nav-anim id="submitButton" onclick="sendDataToFlask()">
+          <span> SUBMIT </span>
+      </button>
+    </div>
   </body>
 
   </html>
