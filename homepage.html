@@ -1,7 +1,8 @@
+
 <!DOCTYPE html>
 <html>
   <head>
-    <meta charset="UTF-8" /> 
+    <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Air Army</title>
     <meta name="title" content="Sky - Nav" />
@@ -21,7 +22,7 @@
     />
 
     <!--
-        preload to prevent load delays, use fonts from assests, woff2 is extension for web font format supporter 
+        preload to prevent load delays, use fonts from assests, woff2 is extension for web font format supporter
         by chrome, cross origin because we may need to load fonts form different domains
         nonsense name to prevent caching
     -->
@@ -34,24 +35,12 @@
     />
 
     <!--load animations and my css file-->
-    <script type="module" crossorigin src="/assets/mainjs.js"></script>
-    <link rel="stylesheet" crossorigin href="/assets/maincss.css">
+    <script type="module" src="/assets/mainjs.js"></script>
+    <link rel="stylesheet" href="/assets/maincss.css">
   </head>
 
   <body>
     <main class="home" data-scroll-container>
-      <!--
-      <nav class="home__nav">
-        <div class="home__nav__left">
-          <div class="nav__name" nav-anim>
-            <span>
-              Air Army
-            </span
-            >
-          </div>
-        </div>
-      </nav>
-      -->
 
       <br><br><br><br><br><br>
       <!-- MAIN HEADING SECTION -->
@@ -94,25 +83,10 @@
           <!-- front title -->
           <span class="hero__title__bottom overflow">
             <div class="hero__title__bottom">
-              <!-- bottom word -->
-              <!--
-              <h1 class="bottom__left desktop" title-overflow>
-                <span class="hero__hover">N</span>
-                <span class="hero__hover">A</span>
-                <span class="hero__hover">V</span>
-                <span class="hero__hover">I</span>
-                <span class="hero__hover">G</span>
-                <span class="hero__hover">A</span>
-                <span class="hero__hover">T</span>
-                <span class="hero__hover">O</span>
-                <span class="hero__hover">R</span>
-              </h1>
-              -->
               <!-- bottom description -->
               <div class="bottom__right">
                 <p class="hero__paragraph">
-                  <span class="first-word">About</span> &nbsp; Something about the team or maybe something about 
-                  what the project is or blah blah yap bruh
+                  <span class="first-word">About</span> &nbsp;    Quick navigation website, ideal for small aircrafts. Uses live weather data to tailor the best path to your destination.
                 </p>
               </div>
             </div>
@@ -130,44 +104,18 @@
 
       <!-- Details, Future -->
       <section class="home__content">
-        <h2 class="home__content__title">Some details about what the tool is</h2>
+        <h2 class="home__content__title">Some details about SKYnav</h2>
         <p class="home__content__desc">
-          Tropical Storm Gabrielle was a short-lived tropical cyclone that passed over North Carolina before tracking out to sea. 
-          The seventh named storm of the 2007 Atlantic hurricane season, Gabrielle developed as a subtropical cyclone on September 8 
-          about 385 miles (620 km) southeast of Cape Lookout, North Carolina. Unfavorable wind shear impacted the storm for much of 
-          its duration, although a temporary decrease in the shear allowed the cyclone to become a tropical storm. On September 9, 
-          it made landfall at Cape Lookout National Seashore in North Carolina with winds of 60 mph (97 km/h). Turning to the northeast
-          , the storm quickly weakened and dissipated on September 11. The storm dropped heavy rainfall near its immediate landfall 
-          location but little precipitation elsewhere. Along the coast of North Carolina, slight localized flooding was reported. 
-          Along the coast of Florida, rough surf drowned one person. Overall damage was minor.
+          Skynav is a web application designed to optimize flight paths for small aircraft, including drones and light helicopters. Leveraging the OpenWeather API, it gathers real-time data on snow, rain, and wind. A sophisticated algorithm, combining A* search with a scikit-learn forest classifier, calculates the safest, most efficient routes, minimizing weather exposure. These routes are then visualized on an interactive map using Leaflet, providing pilots with clear, dynamic guidance. Skynav enhances flight safety and efficiency by delivering data-driven, weather-aware route planning within a user-friendly web interface. This accessibility allows for pre-flight planning and in-flight adjustments from any device with internet access.
           <!-- just in case we want to add something with a link to it -->
-          <a
-            href=""
-            target="_blank"
-            rel="noopener noreferrer"
-            >possible link</a
-          >
         </p>
 
         <br><br><br><br>
-        
+
         <h2 class="home__content__title">FUTURE ENDEAVOURS</h2>
         <p class="home__content__desc">
-          Tropical Storm Gabrielle was a short-lived tropical cyclone that passed over North Carolina before tracking out to sea. 
-          The seventh named storm of the 2007 Atlantic hurricane season, Gabrielle developed as a subtropical cyclone on September 8 
-          about 385 miles (620 km) southeast of Cape Lookout, North Carolina. Unfavorable wind shear impacted the storm for much of 
-          its duration, although a temporary decrease in the shear allowed the cyclone to become a tropical storm. On September 9, 
-          it made landfall at Cape Lookout National Seashore in North Carolina with winds of 60 mph (97 km/h). Turning to the northeast
-          , the storm quickly weakened and dissipated on September 11. The storm dropped heavy rainfall near its immediate landfall 
-          location but little precipitation elsewhere. Along the coast of North Carolina, slight localized flooding was reported. 
-          Along the coast of Florida, rough surf drowned one person. Overall damage was minor.
+          Skynav aims to expand its capabilities by integrating more comprehensive weather data, including icing, turbulence, and visibility. Future development includes real-time air traffic data integration for collision avoidance and dynamic rerouting. Machine learning will be employed to refine the forest classifier for more accurate weather impact predictions. Implementing 3D mapping and terrain analysis will enhance route visualization and safety. Skynav will also explore integration with onboard flight systems for seamless data transfer and automated flight adjustments. User-specific profiles and preferences will be incorporated for personalized route optimization, aiming to become a complete flight planning and navigation solution. We invite forward-thinking sponsors and companies seeking innovative startups to join us in revolutionizing small aircraft flight safety and efficiency.
           <!-- just in case we want to add something with a link to it -->
-          <a
-            href=""
-            target="_blank"
-            rel="noopener noreferrer"
-            >possible link</a
-          >
         </p>
 
       </section>
@@ -182,10 +130,10 @@
         <!-- Try our tool out-->
         <div class="home__projects__project">
           <!--
-          put the link for new website here in href bro  
+          put the link for new website here in href bro
           -->
           <a
-            href="./Location_page.html"
+            href="/Location_page.html"
             target="_blank"
             rel="noopener noreferrer"
             class="home__projects__project__link"
@@ -212,7 +160,7 @@
           <!-- mobile version -->
           <div class="project__link">
             <a
-              href="./Location_page.html"
+              href="/Location_page.html"
               target="_blank"
               rel="noopener noreferrer"
               class="c-button"
@@ -239,9 +187,9 @@
             </a>
           </div>
         </div>
-        
+
         <!-- line 2 -->
-        <!-- 
+        <!--
         <span class="home__projects__line right">
           <span></span>
         </span>
@@ -251,7 +199,7 @@
         <div class="home__projects__project">
         <!-- put link for your next webpage over here -->
           <a
-            href="https://github.com/BetterThanYou73/AeroWeather-AirArmy.git"
+            href="https://github.com/BetterThanYou73/SkyNav-AirArmy.git"
             target="_blank"
             rel="noopener noreferrer"
             class="home__projects__project__link"
@@ -315,7 +263,7 @@
       <!-- email -->
       <section class="home__content">
         <div class="home__contact__email">
-          <button class="email">something@gmail.com</button>
+          <button class="email">SKYNAV.AIRARMY@GMAIL.COM</button>
           <div class="to-copy">
             <span>Click to Copy email because we're so awesome and you want to contact us</span>
           </div>
@@ -330,7 +278,7 @@
       </section>
 
       <!-- time thing -->
-      <!--  
+      <!--
       <footer class="home__footer" id="js-footer">
         <div class="home__footer__center">
             <div class="time">
