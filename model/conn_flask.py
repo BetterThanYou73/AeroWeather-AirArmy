@@ -1,26 +1,28 @@
 from flask import Flask, request, jsonify
-import numpy as np
 from nav import nav_call
+from flask_cors import CORS
+
 app = Flask(__name__)
+CORS(app)  # Enable CORS for frontend communication
 
-@app.route('/predict', methods=['POST'])
-def predict():
-    data = request.json["coordinates"] 
-    input_data = np.array(data).reshape(1, -1) # Example: Input array from frontend
-    if len(input_data) != 4:
-        return jsonify({"error": "Invalid input format."}), 400
-    latA=input_data[0]
-    longA=input_data[1]
-    latB=input_data[2]
-    longB=input_data[3]
-   
-    output_data = process_model(latA,longA,latB,longB)  # Process input data
-    return output_data
+# Simulating the model function that takes four elements as input and returns coordinates
+def process_model(element1, element2, element3, element4):
+    # Replace this with your actual model logic
+    output=nav_call(element1, element2, element3, element4)
+    return output
 
-def process_model(latA,longA,latB,longB):
-    output_data=nav_call(latA,longA,latB,longB)
-    return output_data
+@app.route('/process', methods=['POST'])
+def process():
+    data = request.json  # Get JSON data from frontend
+    elements = data.get("elements")  # Extract elements array
+    
+    if not elements or len(elements) != 4:
+        return jsonify({"error": "Invalid input, expected 4 elements"}), 400
+
+    element1, element2, element3, element4 = elements  # Unpack elements
+    result = process_model(element1, element2, element3, element4)  # Process model
+
+    return jsonify(result)  # Return JSON response
 
 if __name__ == '__main__':
-    
-    app.run(debug=True, port=5000)
+    app.run(debug=True)
