@@ -1,3 +1,5 @@
+window.sendDataToFlask = sendDataToFlask;
+
 function is(o, t) {
     if (!(o instanceof t)) throw new TypeError("Cannot call a class as a function")
 }
@@ -5548,10 +5550,12 @@ function sendDataToFlask() {
     const inputD = document.getElementById('inputD').value;
 
     // Store values in an array
-    const dataArray = [inputA, inputB, inputC, inputD];
+    const dataArray = [inputB, inputA, inputD, inputC];
+
+    console.log(dataArray)
 
     // Send the array to Flask using fetch
-    fetch('/process-data', {
+    fetch('/process', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -5567,3 +5571,4 @@ function sendDataToFlask() {
     });
 }
 
+window.sendDataToFlask = sendDataToFlask;
