@@ -27,39 +27,12 @@
       rel="stylesheet"
     />
 
-    <!--
-        preload to prevent load delays, use fonts from assests, woff2 is extension for web font format supporter 
-        by chrome, cross origin because we may need to load fonts form different domains
-        nonsense name to prevent caching
-    -->
-    <link
-      rel="preload"
-      href="/assets/opensauce-medium-DHCY1jhb.woff2"
-      as="font"
-      type="font/woff2"
-      crossorigin
-    />
-
     <!--load animations and my css file-->
     <script type="module" crossorigin src="/assets/mainjs.js"></script>
     <link rel="stylesheet" crossorigin href="/assets/maincss.css">
   </head>
 
   <body>
-    <!--
-    <div class="home__higher__center">
-        <div class = "no-wrap">
-            <p class = "place">
-                EDMONTON, AB
-            </p>
-            <div class="time">
-                <span data-hour></span>
-                <span class="flash">:</span>
-                <span data-minute></span>
-            </div>
-        </div>
-    </div>
-    -->
     <div class="image-container">
       <img src = "./assets/logo.png" alt = "centered-image" width = "200" height = "200">
     </div>
@@ -83,13 +56,11 @@
           </div>
       </div>
       <div class="button-container">
-        <button class="nav__button c-button" nav-anim id="submitButton">
+        <button class="nav__button c-button button-font" nav-anim id="submitButton">
             <span> SUBMIT </span>
         </button>
       </div>
     </form>
-  
-
   </body>
 
   </html>
