@@ -1,4 +1,4 @@
-var locations = [];
+var Coordinat_arr = [];
 
 fetch("http://127.0.0.1:5000/process", {
     method: "POST",
@@ -11,9 +11,9 @@ fetch("http://127.0.0.1:5000/process", {
 })
 .then(response => response.json())  // Convert response to JSON
 .then(data => {
-    locations = data.locations;  // Assuming response contains a "locations" array
-    for (let i = 0; i < locations.length; i++) {
-        let [lat, lon] = locations[i]; 
+    Coordinat_arr = data.Coordinat_arr;  // Assuming response contains a "Coordinat_arr" array
+    for (let i = 0; i < Coordinat_arr.length; i++) {
+        let [lat, lon] = Coordinat_arr[i]; 
         console.log(`Latitude: ${lat}, Longitude: ${lon}`);
     }
 })
