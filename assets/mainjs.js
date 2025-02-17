@@ -1,29 +1,3 @@
-(function() {
-    const t = document.createElement("link").relList;
-    if (t && t.supports && t.supports("modulepreload")) return;
-    for (const i of document.querySelectorAll('link[rel="modulepreload"]')) e(i);
-    new MutationObserver(i => {
-        for (const n of i)
-            if (n.type === "childList")
-                for (const s of n.addedNodes) s.tagName === "LINK" && s.rel === "modulepreload" && e(s)
-    }).observe(document, {
-        childList: !0,
-        subtree: !0
-    });
-
-    function r(i) {
-        const n = {};
-        return i.integrity && (n.integrity = i.integrity), i.referrerPolicy && (n.referrerPolicy = i.referrerPolicy), i.crossOrigin === "use-credentials" ? n.credentials = "include" : i.crossOrigin === "anonymous" ? n.credentials = "omit" : n.credentials = "same-origin", n
-    }
-
-    function e(i) {
-        if (i.ep) return;
-        i.ep = !0;
-        const n = r(i);
-        fetch(i.href, n)
-    }
-})();
-
 function is(o, t) {
     if (!(o instanceof t)) throw new TypeError("Cannot call a class as a function")
 }
@@ -5566,29 +5540,30 @@ class wf {
 }
 new wf(Sr);
 
-document.addEventListener("DOMContentLoaded", function () {
-    function sendData() {
-        let inputA = parseFloat(document.getElementById("inputA").value);
-        let inputB = parseFloat(document.getElementById("inputB").value);
-        let inputC = parseFloat(document.getElementById("inputC").value);
-        let inputD = parseFloat(document.getElementById("inputD").value);
+function sendDataToFlask() {
+    // Get values from input fields
+    const inputA = document.getElementById('inputA').value;
+    const inputB = document.getElementById('inputB').value;
+    const inputC = document.getElementById('inputC').value;
+    const inputD = document.getElementById('inputD').value;
 
-        let data = [inputB, inputA, inputD, inputC];
+    // Store values in an array
+    const dataArray = [inputA, inputB, inputC, inputD];
 
-        fetch("http://127.0.0.1:5000/predict", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({ coordinates: data })
-        })
-        .then(response => response.json())
-        .then(data => {
-            console.log("Response:", data);
-            alert("Prediction: " + data.result);
-        })
-        .catch(error => console.error("Error:", error));
-    }
+    // Send the array to Flask using fetch
+    fetch('/process-data', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ data: dataArray }), // Send the array as JSON
+    })
+    .then(response => response.json()) // Parse the JSON response
+    .then(data => {
+        console.log('Success:', data); // Handle the response from Flask
+    })
+    .catch((error) => {
+        console.error('Error:', error); // Handle errors
+    });
+}
 
-    document.getElementById("submitButton").addEventListener("click", sendData);
-});
