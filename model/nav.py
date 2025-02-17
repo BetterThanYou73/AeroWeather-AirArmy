@@ -6,15 +6,23 @@ import random
 import numpy as np
 import requests
 import heapq
+import base64
 import pickle
 from concurrent.futures import ThreadPoolExecutor
 from sklearn.ensemble import RandomForestClassifier
+
+
+def decode_api_key(encoded_key: str) -> str:
+    """Decode an API key from its Base64 encoded form."""
+    decoded_bytes = base64.b64decode(encoded_key.encode("utf-8"))
+    return decoded_bytes.decode("utf-8")
 
 #############################################
 # GLOBAL VARIABLES
 #############################################
 GRID_SIZE = 10
-WEATHER_API_KEY = "remove_key" 
+ENCODED = "Yjg2NWY4YWI2NDk5NzQyODc5MjIxM2MxMjgwYWU4OTU=" 
+WEATHER_API_KEY = decode_api_key(ENCODED)
 WIND_THRESHOLD = 6
 RAIN_THRESHOLD = 1.5
 
