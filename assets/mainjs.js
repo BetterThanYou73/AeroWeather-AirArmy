@@ -5564,7 +5564,17 @@ function sendDataToFlask() {
     })
     .then(response => response.json()) // Parse the JSON response
     .then(data => {
-        console.log('Success:', data); // Handle the response from Flask
+
+        console.log("Received data from Flask:", data);
+        // Assuming data is an array of coordinate objects
+        // e.g. [{ coords: [lat, lon], name: "Point 1" }, ... ]
+
+        // Store the received coordinates in localStorage
+        localStorage.setItem('locations', JSON.stringify(data));
+
+        // Redirect to map.html
+        window.location.href = "map.html";
+
     })
     .catch((error) => {
         console.error('Error:', error); // Handle errors
