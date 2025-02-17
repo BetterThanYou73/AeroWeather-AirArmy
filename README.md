@@ -1,4 +1,3 @@
-
 # ✈️ SKY - NAV
 
 ## 🌍 Navigation System for Small Aircrafts, Helicopters, and Drones
@@ -21,7 +20,6 @@ SkyNav-AirArmy is a **real-time navigation system** designed to guide **small ai
 |--------------|------------|
 | **Python** | Backend logic, A* algorithm |
 | **JavaScript (Node.js)** | CLI-based distance calculation |
-| **React.js** | Frontend (if applicable) |
 | **Flask (or Express.js)** | API for distance & weather handling |
 | **OpenWeather API (Future)** | Fetch real-time weather data |
 
