@@ -571,7 +571,7 @@ html.has-scroll-dragging {
     text-transform: uppercase;
     padding: 5px 8px;
     border: 2px solid #777777;
-    border-radius: 45px;
+    border-radius: 5px;
     cursor: pointer;
     transition: all .3s
 }
@@ -1243,7 +1243,7 @@ html.has-scroll-dragging {
 .home__contact__email .to-copy span {
     padding: 5px 8px;
     border: 2px solid #777777;
-    border-radius: 45px
+    border-radius: 5px
 }
 
 .home__contact__email .email {
@@ -1439,6 +1439,7 @@ html.has-scroll-dragging {
     margin-top: 3rem;
 }
 
+
 .from-section,
 .to-section {
     font-family: Bebas Neue, sans-serif;
@@ -1456,9 +1457,19 @@ html.has-scroll-dragging {
     font-weight: lighter
 }
 
+@media (any-pointer: fine) {
+    .input-box:hover {
+        border-color: #9591F9;
+        color: #111;
+        background: #9591F9;
+        font-weight: 500
+    }
+}
+
 .input-box {
     font-family: Bebas Neue, sans-serif;
-    margin-top: 20px;
+    margin-top: 1.4rem;
+    margin-bottom: 1.4rem;
     width: 500px;
     height: 60px;
     background: transparent;
@@ -1467,7 +1478,12 @@ html.has-scroll-dragging {
     font-size: 3rem;
     border: 2px solid #777777;
     box-shadow: 0 0 10px 3px rgba(119, 119, 119, 0.6);
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all .3s;
+    padding: 2rem;
 }
+
 
 .arrow {
     font-family: Bebas Neue, sans-serif;
@@ -1488,10 +1504,14 @@ html.has-scroll-dragging {
 }
 
 
-
 .button-container {
     display: flex;
     justify-content: center;
     align-items: center;
     margin-top: 4rem;
+}
+
+.button-font {
+    font-size: 3rem;
+    border-radius: 5px;
 }
