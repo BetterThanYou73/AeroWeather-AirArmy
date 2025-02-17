@@ -33,7 +33,7 @@ git clone https://github.com/BetterThanYou73/SkyNav-AirArmy.git
 cd SkyNav-AirArmy
 
 
-2️⃣ Install Dependencies  
+### ** 2️⃣ Install Dependencies  
 Depending on which part of the project you are running, install the necessary dependencies.
 
 🐍 **For Python Backend**  
