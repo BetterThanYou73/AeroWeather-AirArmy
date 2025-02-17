@@ -2,7 +2,7 @@
 
 ## 🌍 SkyNav: Smart Navigation for Small Aircraft, Helicopters, and Drones
 
-SkyNav is a real-time navigation system designed to assist small aircraft, helicopters, and drones in reaching their destination safely and efficiently. Using the A (A-star) pathfinding algorithm, it calculates the shortest and safest route while dynamically avoiding hazardous weather conditions such as snow, hail, and storms. By integrating weather awareness into route planning, SkyNav enhances flight safety and ensures smooth navigation from Point A to Point B.
+#### SkyNav is a real-time navigation system designed to assist small aircraft, helicopters, and drones in reaching their destination safely and efficiently. Using the A (A-star) pathfinding algorithm, it calculates the shortest and safest route while dynamically avoiding hazardous weather conditions such as snow, hail, and storms. By integrating weather awareness into route planning, SkyNav enhances flight safety and ensures smooth navigation from Point A to Point B.
 ---
 
 ## 🚀 Features
