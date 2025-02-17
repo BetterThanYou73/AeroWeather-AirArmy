@@ -32,8 +32,7 @@ SkyNav-AirArmy is a **real-time navigation system** designed to guide **small ai
 git clone https://github.com/BetterThanYou73/SkyNav-AirArmy.git
 cd SkyNav-AirArmy
 ```
-### **2️⃣ Install Dependencies**
-Depending on which part of the project you are running, install the necessary dependencies.
+
 ### 2️⃣ Install Dependencies
 Depending on which part of the project you are running, install the necessary dependencies.
 
@@ -41,3 +40,12 @@ Depending on which part of the project you are running, install the necessary de
 ```sh
 pip install flask
 ```
+
+### 🟢 For Node.js CLI (Distance Calculation)
+```sh
+npm install
+```
+
+## ⚡️ License  
+This project is licensed under the **MIT License**. See the [LICENSE](LICENSE) file for details.
+
