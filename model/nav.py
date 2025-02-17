@@ -16,7 +16,6 @@ def decode_api_key(encoded_key: str) -> str:
     """Decode an API key from its Base64 encoded form."""
     decoded_bytes = base64.b64decode(encoded_key.encode("utf-8"))
     return decoded_bytes.decode("utf-8")
-
 #############################################
 # GLOBAL VARIABLES
 #############################################
@@ -355,9 +354,14 @@ def print_route_as_json(latlon_route):
 # nav_call FUNCTION: Main Entry Point
 #############################################
 def nav_call(start_lat, start_lon, goal_lat, goal_lon):
+    
+    current_dir = os.path.dirname(os.path.abspath(__file__))
+    model_path = os.path.join(current_dir, "route_model_multi.pkl")
+    training_path = os.path.join(current_dir, "training_data")
+    
     # 1) Load the pre-trained model (if available)
     try:
-        with open("route_model_multi.pkl", "rb") as f:
+        with open(model_path, "rb") as f:
             model = pickle.load(f)
         print("Loaded model from route_model_multi.pkl")
     except FileNotFoundError:
@@ -399,7 +403,7 @@ def nav_call(start_lat, start_lon, goal_lat, goal_lon):
 
     # 6) Load previous training data if available and combine
     try:
-        with open("training_data.pkl", "rb") as f:
+        with open(training_path, "rb") as f:
             X_old, y_old = pickle.load(f)
         print("Loaded previous training data. Samples:", len(X_old))
         X_combined = np.concatenate([X_old, X_new], axis=0)
@@ -414,9 +418,9 @@ def nav_call(start_lat, start_lon, goal_lat, goal_lon):
     print("Trained model on", len(X_combined), "samples.")
 
     # Save combined training data and updated model
-    with open("training_data.pkl", "wb") as f:
+    with open(training_path, "wb") as f:
         pickle.dump((X_combined, y_combined), f)
-    with open("route_model_multi.pkl", "wb") as f:
+    with open(model_path, "wb") as f:
         pickle.dump(model, f)
     print("Saved updated model and training data.")
 
